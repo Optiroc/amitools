@@ -314,8 +314,12 @@ class InitCommand(OpenCommand):
             rdb_cyls = int(opts["rdb_cyls"])
         else:
             rdb_cyls = 1
+        if "rdb_flags" in opts:
+            rdb_flags = int(opts["rdb_flags"])
+        else:
+            rdb_flags = 0x7
         rdisk = RDisk(blkdev)
-        rdisk.create(blkdev.geo, rdb_cyls=rdb_cyls)
+        rdisk.create(blkdev.geo, rdb_cyls=rdb_cyls, rdb_flags=rdb_flags)
         return rdisk
 
 

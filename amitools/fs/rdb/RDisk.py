@@ -286,7 +286,7 @@ class RDisk:
     # ----- edit -----
 
     def create(
-        self, disk_geo, rdb_cyls=1, hi_rdb_blk=0, disk_names=None, ctrl_names=None
+        self, disk_geo, rdb_cyls=1, hi_rdb_blk=0, rdb_flags=0x7, disk_names=None, ctrl_names=None
     ):
         cyls = disk_geo.cyls
         heads = disk_geo.heads
@@ -312,7 +312,7 @@ class RDisk:
             ctrl_product = ""
             ctrl_revision = ""
 
-        flags = 0x7
+        flags = rdb_flags
         if disk_names != None:
             flags |= 0x10
         if ctrl_names != None:
