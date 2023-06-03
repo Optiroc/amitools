@@ -1094,6 +1094,10 @@ def main(args=None, defaults=None):
     parser.add_argument(
         "-t", "--dostype", default="ffs+intl", help="set default dos type"
     )
+    parser.add_argument(
+        '--version', action='version', version="dev-optiroc-2023.06.03"
+    )
+
     if defaults:
         parser.set_defaults(defaults)
     args = parser.parse_args(args)
