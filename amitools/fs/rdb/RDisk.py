@@ -578,6 +578,7 @@ class RDisk:
         boot_pri=0,
         more_dos_env=None,
         fs_block_size=None,
+        interleave=0,
     ):
         # cyl range is not free anymore or invalid
         if not self.check_cyl_range(*cyl_range):
@@ -611,6 +612,7 @@ class RDisk:
             boot_pri=boot_pri,
             block_size=bsl,
             sec_per_blk=sec_per_blk,
+            interleave=interleave,
         )
         self._adjust_dos_env(dos_env, more_dos_env)
         pb.create(drv_name, dos_env, flags=flags)

@@ -567,6 +567,12 @@ class PartEditCommand(Command):
         else:
             return None
 
+    def get_interleave(self):
+        if "interleave" in self.popts:
+            return self.popts["interleave"]
+        else:
+            return 0
+
     def get_fs_block_size(self, empty=False):
         if "bs" in self.popts:
             return int(self.popts["bs"])
@@ -672,6 +678,7 @@ class AddCommand(PartEditCommand):
             return 1
         flags = self.get_flags()
         boot_pri = self.get_boot_pri()
+        interleave = self.get_interleave()
         more_dos_env = self.get_more_dos_env()
         fs_bs = self.get_fs_block_size(empty=True)
         print("creating: '%s' %s %s" % (drv_name, lo_hi, num_to_tag_str(dostype)))
@@ -682,6 +689,7 @@ class AddCommand(PartEditCommand):
             dos_type=dostype,
             flags=flags,
             boot_pri=boot_pri,
+            interleave=interleave,
             more_dos_env=more_dos_env,
             fs_block_size=fs_bs,
         )
@@ -1095,7 +1103,7 @@ def main(args=None, defaults=None):
         "-t", "--dostype", default="ffs+intl", help="set default dos type"
     )
     parser.add_argument(
-        '--version', action='version', version="dev-optiroc-2023.06.03"
+        '--version', action='version', version="dev-optiroc-2023.07.03"
     )
 
     if defaults:
